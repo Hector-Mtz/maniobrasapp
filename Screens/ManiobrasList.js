@@ -64,14 +64,14 @@ const ManiobrasList = (props) =>
               : null
              }
            </View>
-           <View style={{backgroundColor: '#F4F5F9',  flex:5, borderTopStartRadius:15,borderTopEndRadius:15, marginTop:-15}}>
+           <View style={{backgroundColor: '#F4F5F9',  flex:5, borderTopStartRadius:36,borderTopEndRadius:36, marginTop:-30}}>
              <View style={{flexDirection:'row', justifyContent:'flex-end', marginHorizontal:25}}>
                 <View style={{padding:15}}>
                    <TextInput onChangeText={(newText => {setBusqueda(newText)})}  placeholder='Buscar' placeholderTextColor='#989FB5' style={{backgroundColor:'#E3E5EE', paddingVertical:0, width:120, borderRadius:15, paddingHorizontal:10}} />
                 </View>
              </View>
              <View style={{paddingHorizontal:20, paddingVertical:0}}>
-               <Text style={{color:'#03256C', fontFamily:'Montserrat-SemiBold', fontSize:18}}>Maniobras</Text>
+               <Text style={{color:'#03256C', fontFamily:'Montserrat-SemiBold', fontSize:22}}>Maniobras</Text>
              </View>
              <View>
                 {

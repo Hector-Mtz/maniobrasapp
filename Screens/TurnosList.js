@@ -24,6 +24,11 @@ const TurnosList = (props) =>
         navigate.navigate('ManiobrasList',{data:datosSesion});
     }
 
+    const navigateToListaAsistencia = (turno) => 
+    {
+        navigate.navigate('ListaAsistencia',{data:datosSesion, turno:turno});
+    }
+
   return (
      <SafeAreaView style={{flex:1}}>
        <View style={styles.container}>
@@ -38,12 +43,12 @@ const TurnosList = (props) =>
               : null
              }
            </View>
-           <View style={{backgroundColor: '#F4F5F9',  flex:5, borderTopStartRadius:15,borderTopEndRadius:15, marginTop:-15}}>
+           <View style={{backgroundColor: '#F4F5F9',  flex:5, borderTopStartRadius:36,borderTopEndRadius:36, marginTop:-30}}>
               <Pressable onPress={()=>{returnToManiobras()}} style={{padding:15}}>
                  <Image style={{transform: [{rotate: '180deg'}]}}  source={require('../assets/img/flecha.png')} />
               </Pressable>
               <View style={{paddingHorizontal:20, paddingVertical:0}}>
-                <Text style={{color:'#03256C', fontFamily:'Montserrat-SemiBold', fontSize:18}}>Turnos</Text>
+                <Text style={{color:'#03256C', fontFamily:'Montserrat-SemiBold', fontSize:22}}>Turnos</Text>
               </View>
               <View>
                  {
@@ -59,19 +64,31 @@ const TurnosList = (props) =>
                           <View style={styles.cardTurno}>
                             <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                                <Text style={{color:'#05173B', fontFamily:'Montserrat-Medium', fontSize:18}}>{item.name}</Text>
-                               <Pressable >
+                               <Pressable onPress={()=>{navigateToListaAsistencia(item)}} >
                                  <Image source={require('../assets/img/flecha.png')} />
                                </Pressable>
                             </View>
-                            <View style={{flexDirection:'row'}}>
+                            <View style={{flexDirection:'row', justifyContent:'space-between', marginVertical:20}}>
                                 <View>
-                                  <Text style={[styles.textFont,  ]}>Entrada</Text>
+                                  <Text style={[styles.textFont]}>Entrada</Text>
+                                  <View style={{flexDirection:'row', alignItems:'center'}}>
+                                    <Image style={{width:15, height:15 ,marginRight:5}} source={require('../assets/img/reloj.png')} />
+                                    <Text style={{color:'#05173B'}}>{item.hora_entrada}</Text>
+                                  </View>
                                 </View>
                                 <View>
-
+                                  <Text style={[styles.textFont]}>Salida</Text>
+                                  <View style={{flexDirection:'row', alignItems:'center'}}>
+                                    <Image style={{width:15, height:15 ,marginRight:5}} source={require('../assets/img/reloj.png')} />
+                                    <Text style={{color:'#05173B'}}>{item.hora_salida}</Text>
+                                  </View>
                                 </View>
                                 <View>
-
+                                  <Text style={[styles.textFont]}>Programados</Text>
+                                  <View style={{flexDirection:'row', alignItems:'center'}}>
+                                    <Image style={{width:13, height:15 ,marginRight:5}} source={require('../assets/img/usuario.png')} />
+                                    <Text style={{color:'#05173B'}}>{item.cantidad_personal}</Text>
+                                  </View>
                                 </View>
                             </View>
                           </View>

@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Screens/Login';
 import ManiobrasList from './Screens/ManiobrasList';
 import TurnosList from './Screens/TurnosList';
+import ListaAsistencia from './Screens/ListaAsistencia';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ function App(): React.JSX.Element
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name='ManiobrasList' component={ManiobrasList} />
           <Stack.Screen name='TurnosList' component={TurnosList} />
+          <Stack.Screen name='ListaAsistencia' component={ListaAsistencia} />
        </Stack.Navigator>
     </NavigationContainer>
   );
