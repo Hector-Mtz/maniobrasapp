@@ -12,11 +12,13 @@ const TurnosList = (props) =>
     //console.log(props.route.params.data[1])
     const [datosSesion, setDatosSesion] = useState({});
     const [turnos, setTurnos] = useState([]);
+    const [maniobra, setManiobra] = useState({});
     useEffect(()=> 
     {
        //console.log(props.route.params.usuario)
        setDatosSesion(props.route.params.usuario);
-       setTurnos(props.route.params.maniobra.turnos)
+       setManiobra(props.route.params.maniobra);
+       setTurnos(props.route.params.maniobra.turnos);
     },[])
 
     const returnToManiobras = () => 
@@ -26,7 +28,7 @@ const TurnosList = (props) =>
 
     const navigateToListaAsistencia = (turno) => 
     {
-        navigate.navigate('ListaAsistencia',{data:datosSesion, turno:turno});
+        navigate.navigate('ListaAsistencia',{data:datosSesion, turno:turno , maniobra:maniobra});
     }
 
   return (
@@ -131,7 +133,8 @@ const styles = StyleSheet.create({
       padding:20,
     },
     textFont:{
-        fontFamily:'Montserrat-Medium'
+        fontFamily:'Montserrat-Medium',
+        color:'#989FB5'
       },
 });
 

@@ -17,6 +17,7 @@
     "axios": "^1.6.7",
     "react": "18.2.0",
     "react-native": "0.73.3",
+    "react-native-file-viewer": "^2.1.5",
     "react-native-gesture-handler": "^2.15.0",
     "react-native-paper": "^5.12.3",
     "react-native-reanimated": "^3.7.0",

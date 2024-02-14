@@ -30,7 +30,7 @@ const ManiobrasList = (props) =>
      })
     .then(response => 
       {
-         console.log(response.data)
+         //console.log(response.data)
          setManiobras(response.data)
       })
     .catch(err => 

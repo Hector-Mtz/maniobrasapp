@@ -100,12 +100,12 @@ export default function Login()
             </View>
             <View style={{marginHorizontal:30}}>
               <View style={styles.containerInput}>
-                 <TextInput style={{backgroundColor:'#F4F5F9'}}  label="Usuario" value={usuario} keyboardType='email-address' onChangeText={(newText)=>{setUsuario(newText)}}   />
+                 <TextInput style={{backgroundColor:'#F4F5F9', borderTopEndRadius:10, borderTopStartRadius:10, borderRadius:10}}  label="Usuario" value={usuario} keyboardType='email-address' onChangeText={(newText)=>{setUsuario(newText)}}   />
               </View>
               <View style={styles.containerInput}>
-                 <TextInput style={{backgroundColor:'#F4F5F9'}} label="Contraseña" value={contraseña} onChangeText={(newText)=>{setContraseña(newText)}} secureTextEntry={true}  />
+                 <TextInput  style={{backgroundColor:'#F4F5F9',borderTopEndRadius:10, borderTopStartRadius:10, borderRadius:10}} label="Contraseña" value={contraseña} onChangeText={(newText)=>{setContraseña(newText)}} secureTextEntry={true}  />
               </View>
-              <Button mode="contained" onPress={()=>{Login()}} style={{backgroundColor:'#1768AC', marginHorizontal:40}}  loading={clicked}>
+              <Button mode="contained" onPress={()=>{Login()}} style={{backgroundColor:'#1768AC', marginHorizontal:40, marginVertical:15}}  loading={clicked}>
                  Iniciar sesión
               </Button>
               <View style={{alignItems:'center', marginVertical:15}}>
