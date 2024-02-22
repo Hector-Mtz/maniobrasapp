@@ -17,7 +17,7 @@ export default function Header()
         <Image style={{width:18, height:20}} source={require('../assets/img/cerrar-sesion.png')} />
       </Pressable>
       <View>
-        <Image style={{width:110, height:30}} source={require('../assets/img/coorsa-gris.png')} />
+        <Image style={{width:110, height:30}} source={require('../assets/img/coorsa-blanco.png')} />
       </View>
     </View>
   )

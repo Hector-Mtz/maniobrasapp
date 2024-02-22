@@ -6,6 +6,8 @@ import Login from './Screens/Login';
 import ManiobrasList from './Screens/ManiobrasList';
 import TurnosList from './Screens/TurnosList';
 import ListaAsistencia from './Screens/ListaAsistencia';
+import Envio from './Screens/Envio';
+import OkGuardaro from './Screens/Validations/OkGuardaro';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +22,9 @@ function App(): React.JSX.Element
           <Stack.Screen name='ManiobrasList' component={ManiobrasList} />
           <Stack.Screen name='TurnosList' component={TurnosList} />
           <Stack.Screen name='ListaAsistencia' component={ListaAsistencia} />
+          <Stack.Screen name='Envio' component={Envio} />
+
+          <Stack.Screen name='OkGuardaro' component={OkGuardaro} />
        </Stack.Navigator>
     </NavigationContainer>
   );

@@ -55,25 +55,26 @@ const ManiobrasList = (props) =>
         <View style={styles.container}>
            <Header />
            <View style={styles.container1}>
-             <Text style={{color:'white', fontSize:18, fontFamily:'Montserrat-Light'}} >¡Bienvenido de nuevo</Text>
+             <Text style={{color:'white', fontSize:24, fontFamily:'Montserrat-Light'}} >¡Bienvenido de nuevo</Text>
              {
               datosSesion !== {} ?
               <View>
-                 <Text style={{color:'white', fontFamily:'Montserrat-SemiBold', fontSize:20}}>{datosSesion.name} !</Text>
+                 <Text style={{color:'white', fontFamily:'Montserrat-SemiBold', fontSize:26}}>{datosSesion.name} !</Text>
               </View>
               : null
              }
            </View>
            <View style={{backgroundColor: '#F4F5F9',  flex:5, borderTopStartRadius:36,borderTopEndRadius:36, marginTop:-30}}>
-             <View style={{flexDirection:'row', justifyContent:'flex-end', marginHorizontal:25}}>
+             <View style={{flexDirection:'row', justifyContent:'flex-end', marginHorizontal:16, marginTop:22}}>
                 <View style={{padding:15}}>
-                   <TextInput onChangeText={(newText => {setBusqueda(newText)})}  placeholder='Buscar' placeholderTextColor='#989FB5' style={{backgroundColor:'#E3E5EE', paddingVertical:0, width:120, borderRadius:15, paddingHorizontal:10}} />
+                   <TextInput onChangeText={(newText => {setBusqueda(newText)})}  placeholder='Buscar' placeholderTextColor='#989FB5' style={{backgroundColor:'#E3E5EE', paddingVertical:0, width:150, borderRadius:15, paddingHorizontal:10,fontFamily:'Montserrat-Medium'}} />
+                   <Image style={{position:'absolute', zIndex:10, marginHorizontal:130, marginVertical:21, width:15, height:15}} source={require('../assets/img/buscar.png')} />
                 </View>
              </View>
-             <View style={{paddingHorizontal:20, paddingVertical:0}}>
-               <Text style={{color:'#03256C', fontFamily:'Montserrat-SemiBold', fontSize:22}}>Maniobras</Text>
+             <View style={{paddingHorizontal:20, paddingVertical:0, marginHorizontal:8}}>
+               <Text style={{color:'#03256C', fontFamily:'Montserrat-Bold', fontSize:22}}>Maniobras</Text>
              </View>
-             <View>
+             <View style={{marginHorizontal:8}}> 
                 {
                   maniobras.length > 0 ?
                   <View>
@@ -85,8 +86,8 @@ const ManiobrasList = (props) =>
                       {
                        return (
                         <View style={styles.cardManiobra}>
-                           <Text style={{color:'#05173B', fontFamily:'Montserrat-Medium', fontSize:18}}>{item.name}</Text>
-                           <Pressable onPress={()=>{viewTurns(item)}}>
+                           <Text style={{color:'#05173B', fontFamily:'Montserrat-SemiBold', fontSize:18, marginLeft:10}}>{item.name}</Text>
+                           <Pressable  style={{padding:10}} onPress={()=>{viewTurns(item)}}>
                              <Image source={require('../assets/img/flecha.png')} />
                            </Pressable>
                         </View>
@@ -118,7 +119,7 @@ const styles = StyleSheet.create(
             backgroundColor:'#03256C',
             flex:1,
             paddingHorizontal:15,
-            paddingTop:15,
+            paddingTop:30,
             borderBottomRightRadius:0,
             zIndex:-1
         },
@@ -129,10 +130,12 @@ const styles = StyleSheet.create(
         {
           margin:20,
           backgroundColor:'white',
-          borderRadius:10,
-          padding:20,
+          borderRadius:17,
+          paddingHorizontal:15,
+          paddingVertical:10,
           flexDirection:'row',
-          justifyContent:'space-between'
+          justifyContent:'space-between',
+          alignItems:'center'
         }
     }
 )
