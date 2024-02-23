@@ -205,11 +205,11 @@ export default function Envio(props)
                     <Text  style={{textAlign:'center', color:'#989FB5', fontSize:13, fontFamily:'Montserrat-Medium', marginVertical:0}}>Por favor asegurese de que se vean los datos claramente.</Text>
                   </View>
                 }
-                <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:50}}>
-                   <TouchableOpacity onPress={()=>{setPhotos([]); setSelectPhoto(null)}} style={{borderColor:'#1768AC',borderWidth:2, paddingHorizontal:15, paddingVertical:10, borderRadius:30}}>
+                <View style={{ flexDirection:'row', justifyContent:'center', marginVertical:50}}>
+                   <TouchableOpacity onPress={()=>{setPhotos([]); setSelectPhoto(null)}} style={{borderColor:'#1768AC',borderWidth:2, paddingHorizontal:15, paddingVertical:10, borderRadius:30, marginHorizontal:10}}>
                      <Text style={{fontFamily:'Montserrat-SemiBold', fontSize:20, color:'#1768AC'}}>Borrar todo</Text>
                    </TouchableOpacity>
-                   <TouchableOpacity onPress={()=>{enviarPhotosListas()}} style={{backgroundColor:'#1768AC',paddingHorizontal:40, paddingVertical:10, borderRadius:30}}>
+                   <TouchableOpacity onPress={()=>{enviarPhotosListas()}} style={{backgroundColor:'#1768AC',paddingHorizontal:40, paddingVertical:10, borderRadius:30,marginHorizontal:10}}>
                      <Text style={{fontFamily:'Montserrat-SemiBold', fontSize:20, color:'white'}}>Enviar</Text>
                    </TouchableOpacity>
                 </View>
