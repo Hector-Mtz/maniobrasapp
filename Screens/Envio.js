@@ -169,7 +169,7 @@ export default function Envio(props)
                <View style={{flexDirection:'col', justifyContent:'center'}}>
                 <View style={{flexDirection:'row', justifyContent:'center'}}>
                  <Pressable onPress={()=>{takePhoto()}} style={{backgroundColor:'#2CBEE1', borderRadius:100, padding:60,}}>
-                    <Image style={{width:100, height:8000.}} source={require('../assets/img/icono-foto.png')} />
+                    <Image style={{width:100, height:80}} source={require('../assets/img/icono-foto.png')} />
                   </Pressable>
                 </View>
                  <View style={{marginTop:50}}>

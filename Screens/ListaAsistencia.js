@@ -10,11 +10,8 @@ import PDFView from '../Components/PDFView';
 //
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
-//import FileViewer from "react-native-file-viewer";
-import FingerprintScanner from 'react-native-fingerprint-scanner';
-//Escaneo de huellas
-import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
-import debounce from 'lodash.debounce';
+//
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ListaAsistencia = (props) => 
 {
@@ -98,6 +95,7 @@ const ListaAsistencia = (props) =>
         {
             console.log(err.response);
             setActivityIndicator(false);
+
         });
     }
 
@@ -231,8 +229,9 @@ const ListaAsistencia = (props) =>
     const guardarListaActual = () => 
     {
       //console.log('guardar')
-      console.log(maniobristas);
-      
+       
+       console.log(turno)
+       //console.log(busqueda)
     }
 
   return (
@@ -431,11 +430,14 @@ const ListaAsistencia = (props) =>
                   </View>
                }
              </View>
-             <View style={{flexDirection:'row', justifyContent:'space-around', marginTop:20 }}>
+             <View style={{flexDirection:'row', justifyContent:'center', marginTop:20 }}>
+              {/*
                 <Pressable onPress={()=>{guardarListaActual()}} style={{flexDirection:'row', alignItems:'center', borderColor:'#1768AC', borderWidth:2, paddingHorizontal:15, paddingVertical:5, borderRadius:20}}>
                    <Image style={{width:18, height:18, marginRight:10}} source={require('../assets/img/guardar.png')} />
                    <Text style={{fontFamily:'Montserrat-Medium', color:'#1768AC', fontSize:17}}>Guardar</Text>
                 </Pressable>
+                */
+              }
                 <Pressable onPress={()=>{enviar()}} style={{backgroundColor:'#1768AC',flexDirection:'row', alignItems:'center', paddingHorizontal:20, paddingVertical:5, borderRadius:20}}>
                    <Image style={{width:25, height:25, marginRight:10}} source={require('../assets/img/enviar.png')} />
                    <Text style={{fontFamily:'Montserrat-Medium', color:'white', fontSize:17}}>Enviar</Text>
