@@ -8,6 +8,7 @@ import TurnosList from './Screens/TurnosList';
 import ListaAsistencia from './Screens/ListaAsistencia';
 import Envio from './Screens/Envio';
 import OkGuardaro from './Screens/Validations/OkGuardaro';
+import SavePhoto from './Screens/SavePhoto';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +24,7 @@ function App(): React.JSX.Element
           <Stack.Screen name='TurnosList' component={TurnosList} />
           <Stack.Screen name='ListaAsistencia' component={ListaAsistencia} />
           <Stack.Screen name='Envio' component={Envio} />
-
+          <Stack.Screen name='SavePhoto' component={SavePhoto} />
           <Stack.Screen name='OkGuardaro' component={OkGuardaro} />
        </Stack.Navigator>
     </NavigationContainer>

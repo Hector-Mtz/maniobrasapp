@@ -5,13 +5,15 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../Components/Header';
 import { FlatList } from 'react-native-gesture-handler';
-import { Checkbox, ActivityIndicator } from 'react-native-paper';
+import {  ActivityIndicator } from 'react-native-paper';
 import PDFView from '../Components/PDFView';
 //
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 //
 import AsyncStorage from '@react-native-async-storage/async-storage';
+//
+import CheckBox from 'react-native-check-box'
 
 const ListaAsistencia = (props) => 
 {
@@ -111,6 +113,7 @@ const ListaAsistencia = (props) =>
 
     const [viewDocumento, setViewDocumento] = useState(false);
     const [documentoSelected, setDocumentoSelected] = useState('');
+    const [maniobristaBuscado, setManiobristaBuscado] = useState(null);
     const viewDoc = (doc) =>
     {
       setViewDocumento(true);
@@ -124,6 +127,7 @@ const ListaAsistencia = (props) =>
       {
         //console.log(response.data)
         let maniobristaABuscar = maniobristas.filter((maniobrista) => maniobrista.value == response.data);
+        setManiobristaBuscado(maniobristaABuscar[0]);
         if(maniobristaABuscar.length > 0)
         {
            //console.log(maniobristaABuscar)
@@ -266,8 +270,8 @@ const ListaAsistencia = (props) =>
                    <Image style={{position:'absolute', zIndex:10, marginHorizontal:115, marginVertical:27, width:15, height:15}} source={require('../assets/img/buscar.png')} />
                 </View>
              </View>
-             <View style={{}}>
-               <QRCodeScanner
+             <View style={{flexDirection:'row', justifyContent:'center'}}>
+                <QRCodeScanner
                       onRead={(e)  =>
                       {
                            onSuccess(e)
@@ -280,8 +284,20 @@ const ListaAsistencia = (props) =>
                       containerStyle={{width:100, height:20}}
                       markerStyle={{width:100, height:132, borderColor:'#2CBEE1'}}
                       flashMode={RNCamera.Constants.FlashMode.off}
-                      cameraStyle={{width:100, height:100, position:'relative', marginHorizontal:130, marginVertical:10}}
+                      cameraStyle={{width:100, height:100, position:'relative', marginHorizontal:60, marginVertical:10}}
                     />
+                <View style={{marginHorizontal:60, marginTop:-15}}>
+                  {
+                    maniobristaBuscado !== null ?
+                    <View>
+                      <Image style={{width:100, height:132, marginVertical:10}} source={{ uri: maniobristaBuscado.foto }} />
+                    </View>
+                    :
+                    <View style={{marginVertical:20}}>
+                      <Image style={{width:80, height:90}} source={require('../assets/img/perfil_gris.png')} />
+                    </View>
+                  }
+                </View>
              </View>
              <View style={{flexDirection:'row', justifyContent:'center'}} >
               {
@@ -290,7 +306,7 @@ const ListaAsistencia = (props) =>
                  : null
               }
              </View>
-             <View style={{paddingTop:15, height:250, marginBottom:10, marginTop:130,marginHorizontal:0, paddingHorizontal:20}}>
+             <View style={{paddingTop:15, height:250, marginBottom:10, marginTop:10,marginHorizontal:0, paddingHorizontal:20}}>
                {
                   maniobristas.length > 0 ?
                   <View>
@@ -305,12 +321,13 @@ const ListaAsistencia = (props) =>
                            {
                             return (
                              <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:2, marginVertical:5, alignItems:'center'}}>
-                                 <Checkbox
-                                  color='#2CBEE1'
-                                  uncheckedColor='#2CBEE1'
-                                  rippleColor='#2CBEE1'
-                                  background='#2CBEE1'
-                                  status={item.asistencia ? 'checked' : 'unchecked'}
+                                 <CheckBox
+                                  isChecked={item.asistencia ? true : false}
+                                  onClick={()=>
+                                  {
+                                     console.log('hola');
+                                  }}
+                                  checkBoxColor='#1768AC'
                                   />
                                 <View style={{backgroundColor:item.bg , flexDirection:'row', alignItems:'center', width:270, justifyContent:'space-between', paddingHorizontal:17, paddingVertical:17, borderRadius:15 }}>
                                   <Text style={{color:item.color, fontFamily:'Montserrat-Medium', fontSize:15, textTransform:'capitalize'}}>
@@ -327,7 +344,7 @@ const ListaAsistencia = (props) =>
                           />
                           <View style={{flexDirection:'row', justifyContent:'center'}}>
                              <Modal animationType="fade" transparent visible={viewModalInfo}>
-                               <View style={{backgroundColor:'white', height:530, width:345, marginVertical:'40%',marginHorizontal:'3%', paddingHorizontal:'8%', paddingVertical:'5%' ,borderRadius:30, shadowColor: "#000",
+                               <View style={{backgroundColor:'white', height:530, width:345, marginVertical:'30%',marginHorizontal:'5%', paddingHorizontal:'8%', paddingVertical:'5%' ,borderRadius:30, shadowColor: "#000",
                                            shadowOffset: {
                                            	width: 0,
                                            	height: 2,
@@ -361,13 +378,20 @@ const ListaAsistencia = (props) =>
                                            <TextInput style={{textTransform:'capitalize', backgroundColor:'#F4F5F9',borderRadius:15,color:'#05173B', width:130,fontFamily:'Montserrat-Medium'}} editable={false} value={maniobristaActual.apellido_materno} />
                                          </View>
                                      </View>
-                                     <View style={{flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
-                                       <View>
-                                           <Text style={{color:'#989FB5', fontFamily:'Montserrat-Medium', fontSize:13}}>NSS</Text>
-                                           <View style={{backgroundColor:'#F4F5F9',width:280,borderRadius:15,paddingVertical:15, paddingHorizontal:10, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+                                     <View style={{flexDirection:'row', marginVertical:10}}>
+                                       <View style={{flexDirection:'row', alignItems:'center'}}>
+                                          <View>
+                                            <Text style={{color:'#989FB5', fontFamily:'Montserrat-Medium', fontSize:13}}>NSS</Text>
+                                            <View style={{backgroundColor:'#F4F5F9',width:210,borderRadius:15,paddingVertical:15, paddingHorizontal:10, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
                                              <Text style={{textTransform:'uppercase',color:'#05173B',fontFamily:'Montserrat-Medium'}}>{maniobristaActual.nss} </Text>
                                              <Pressable onPress={()=>{viewDoc(maniobristaActual.docNss)}} style={{backgroundColor:'#1768AC', paddingHorizontal:10, paddingVertical:5, borderRadius:15}}>
                                                 <Image style={{width:25, height:16}} source={require('../assets/img/ojo.png')} />
+                                             </Pressable>
+                                           </View>
+                                          </View>
+                                           <View>
+                                             <Pressable onPress={()=>{viewDoc(maniobristaActual.alta_imss)}} style={{backgroundColor:'#1768AC', paddingHorizontal:10, paddingVertical:5, borderRadius:15, marginHorizontal:10, marginTop:17}}>
+                                                <Image style={{width:39, height:39}} source={require('../assets/img/IMSS-Logo_aguila.png')} />
                                              </Pressable>
                                            </View>
                                        </View>
