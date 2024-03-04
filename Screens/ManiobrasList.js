@@ -44,10 +44,25 @@ const ManiobrasList = (props) =>
      consultarManiobras(busqueda)
   },[busqueda])
 
-  const viewTurns = (maniobra) => 
+  const viewTurns = async (maniobra) => 
   {
      //console.log(maniobras)
-     navigate.navigate('TurnosList',{usuario:datosSesion, maniobra:maniobra });
+     await axios.get('https://asistencia-maniobras-4mklxuo4da-uc.a.run.app/api/getTurnosList',{
+      params:{
+        maniobra:maniobra.id
+      }
+     })
+    .then(response => 
+      {
+         //console.log(response.data)
+         
+         navigate.navigate('TurnosList',{usuario:datosSesion, maniobra:response.data });
+       
+      })
+    .catch(err => 
+      {
+        console.log(err)
+      });
   }
 
   return (

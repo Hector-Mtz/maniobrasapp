@@ -78,8 +78,10 @@ export default function SavePhoto(props)
             });
     }
 
+    const [showActivityIndicator, setShowActivityIndicator] = useState(false);
     const enviarPhoto = async () =>
     {
+       setShowActivityIndicator(true);
         if(photo !== null)
         {
            let formData = new FormData();
@@ -99,12 +101,17 @@ export default function SavePhoto(props)
            .then(response => 
             {
                 console.log(response.data);
+                setShowActivityIndicator(false);
                 goBack();
             })
             .catch(err=>
             {
               console.log(err);
             })
+        }
+        else
+        {
+          setShowActivityIndicator(false);
         }
     }
 
@@ -168,39 +175,58 @@ export default function SavePhoto(props)
                         </View>
                      </View>
                    </View>
-                   <View style={{marginTop:15}}>
-                    {
-                        photo !== null ?
-                        <View >
-                            <View style={{flexDirection:'row', justifyContent:'center'}}>
-                              <Image style={{width:100, height:120}} source={{ uri: photo.uri }}/>
-                            </View>
-                            <View style={{flexDirection:'row', marginTop:15, justifyContent:'center'}}>
-                                <TouchableOpacity onPress={()=>{setPhoto(null)}} style={{borderColor:'#1768AC',borderWidth:2, paddingHorizontal:15, paddingVertical:10, borderRadius:30, marginHorizontal:10}}>
-                                    <Text style={{fontFamily:'Montserrat-SemiBold', fontSize:20, color:'#1768AC'}}>Borrar</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={()=>{enviarPhoto()}} style={{backgroundColor:'#1768AC',paddingHorizontal:20, paddingVertical:10, borderRadius:30,marginHorizontal:10}}>
-                                    <Text style={{fontFamily:'Montserrat-SemiBold', fontSize:20, color:'white'}}>Guardar</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        :null
-                    }
-                   </View>
-                   <View style={{flexDirection:'row', justifyContent:'center', marginTop:5}}>
-                        <TouchableOpacity  onPress={()=> 
+                   <View style={{marginTop:25, flexDirection:'row', justifyContent:'space-around', alignItems:'center'}}>
+                    <View>
                         {
-                            takePhoto()
-                        }} style={{backgroundColor:'#2CBEE1', borderRadius:100, padding:15,}}>
-                          <Image style={{width:50, height:40}} source={require('../assets/img/icono-foto.png')} />
-                        </TouchableOpacity>
-                   </View>
+                            photo !== null ?
+                            <View >
+                                <View style={{flexDirection:'row', justifyContent:'center'}}>
+                                  <Image style={{width:100, height:120}} source={{ uri: photo.uri }}/>
+                                </View>
+                            </View>
+                            :null
+                        }
+                      </View>
+                      <View>
+                         <View style={{flexDirection:'row', justifyContent:'center', marginTop:5}}>
+                               <TouchableOpacity  onPress={()=> 
+                               {
+                                   takePhoto()
+                               }} style={{backgroundColor:'#2CBEE1', borderRadius:100, padding:15,}}>
+                                 <Image style={{width:50, height:40}} source={require('../assets/img/icono-foto.png')} />
+                               </TouchableOpacity>
+                          </View>
+                      </View>
+                    </View>
                  </View>
                  :
                  <View>
                     <Text  style={{textAlign:'center', marginVertical:40, textTransform:'uppercase', color:'#03256C', fontFamily:'Montserrat-SemiBold'}}>No se ha recuperado ninguna información</Text>
                  </View>
                }
+             </View>
+             <View style={{marginTop:-100}}>
+              <View>
+                {
+                  photo !== null ?
+                  <View style={{flexDirection:'row', marginTop:0, justifyContent:'center'}}>
+                    <TouchableOpacity onPress={()=>{setPhoto(null)}} style={{borderColor:'#1768AC',borderWidth:2, paddingHorizontal:30, paddingVertical:10, borderRadius:30, marginHorizontal:30}}>
+                        <Text style={{fontFamily:'Montserrat-SemiBold', fontSize:20, color:'#1768AC'}}>Borrar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{enviarPhoto()}} style={{backgroundColor:'#1768AC',paddingHorizontal:20, paddingVertical:10, borderRadius:30,marginHorizontal:30}}>
+                        <Text style={{fontFamily:'Montserrat-SemiBold', fontSize:20, color:'white'}}>Guardar</Text>
+                    </TouchableOpacity>
+                  </View>
+                  : null
+                }
+              </View>
+               <View style={{marginTop:25}}>
+                  {
+                    showActivityIndicator ?
+                    <ActivityIndicator  size="large" color="#1768AC" />
+                    : null
+                  }
+               </View>
              </View>
            </View>
         </View>
